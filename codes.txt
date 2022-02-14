@@ -1,0 +1,27 @@
+
+# How to convert float to percentage
+
+
+
+
+Report1['Contribution'] = pd.Series(["{0:.2f}%".format(val * 100) for val in Report1['Contribution']], index = Report1.index)
+
+Report1['Pentration'] = pd.Series(["{0:.2f}%".format(val * 100) for val in Report1['Pentration']], index = Report1.index)
+
+
+# Fill NA with string
+output["Dispo"].fillna("No Dial", inplace = True)
+  
+
+# Drop Column
+
+output.dropna(subset = ["status_name"], inplace=True)
+
+# Drop rows by specific values of column in pandas.
+
+i = table[((table.main == 'Abc'))].index
+table = table.drop(i)
+
+# Drop rows by specific string value of column in pandas.
+
+table = table[table["Email_ID"].str.contains("Sbi")==False]

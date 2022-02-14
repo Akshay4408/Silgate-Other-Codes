@@ -1,0 +1,84 @@
+How to find and Remove duplicaes:
+
+Link: https://towardsdatascience.com/finding-and-removing-duplicate-rows-in-pandas-dataframe-c6117668631f?gi=77f01a0d56e0
+
+
+
+
+Countif Function of excel in pandas
+
+Finc['dup_number'] = Finc.groupby(['phone_number_dialed']).cumcount()+1
+
+Link: https://stackoverflow.com/questions/39481609/number-duplicates-sequentially-in-pandas-dataframe/39481775
+
+
+# Drop Column
+
+df.drop(['A'], axis = 1)
+
+# Append two datasets: Python – Pandas dataframe.append()
+
+df1.append(df2)
+
+# Calculate percentage:
+
+Report['Break %'] = (Report['BREAK'] / Report['LOGIN TIME1'] * 100)
+Report['Break %'] = Report['Break %'].apply(np.ceil) 
+Report['Break %'] = Report['Break %'].map(str) + '%'
+Report.head()
+
+# Round value of excel in pandas:
+Link: https://datatofish.com/round-values-pandas-dataframe/
+
+1) Round up values under a single DataFrame column:
+
+   Report['Break %'] = Report['Break %'].apply(np.ceil) 
+
+2) Round down values under a single DataFrame column:
+
+  df['DataFrame Column'].apply(np.floor)
+
+3) Excel round values:
+  Export['Net'] = np.round(Export['Net'], decimals = 0)
+
+
+
+
+#Filter rows based on column values
+
+df = df[df['Team'] != 'C']
+
+
+
+# How to convert float to percenage.
+
+Result['Utilization %'] = Result['Utilization %'].map(lambda n: '{:,.0%}'.format(n))
+Result['Occupancy %'] = Result['Occupancy %'].map(lambda n: '{:,.0%}'.format(n))
+
+Result
+
+
+
+# floats are not rounded yet, round before astype
+
+df = pd.DataFrame({'A': [3.14159, np.nan, 1.61803]})
+
+df['A'] = df['A'].round().astype('Int64')
+df
+
+
+#return the month names of the DateTimeIndex
+
+Export['Booking Date'] = Export['Booking Date'].dt.month_name(locale = 'English')
+Export.head()
+
+
+# How to Extract Month Name and Year from Date column of DataFrame
+
+df['Date'] = pd.to_datetime(df['Date'])
+
+df['Mon_Year'] = df['Date'].dt.strftime('%b-%Y')
+
+
+# How to convert object to datetime.
+raw_data['Mycol'] =  pd.to_datetime(raw_data['Mycol'], format='%d%b%Y:%H:%M:%S.%f')

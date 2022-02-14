@@ -1,0 +1,21 @@
+# Difference between two Timestamps in Seconds – pandas dataframe python
+
+https://www.datasciencemadesimple.com/difference-two-timestamps-seconds-minutes-hours-pandas-python-2/
+
+# Convert the column type from string (Object) to datetime format in Pandas dataframe
+
+https://www.geeksforgeeks.org/convert-the-column-type-from-string-to-datetime-format-in-pandas-dataframe/
+
+
+
+#AttributeError: ‘Series’ object has no attribute ‘strftime’
+
+dff["New Time"] = dff["Old Time"].dt.strftime("%d/%m/%Y %H:%M")
+
+
+
+# Python print current time with AM PM
+
+from datetime import datetime
+ 
+print(datetime.today().strftime("%I:%M %p"))

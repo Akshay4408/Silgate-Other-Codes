@@ -1,0 +1,7 @@
+# How to add new row TOTAL
+
+LINK: https://stackoverflow.com/questions/21752399/pandas-dataframe-total-row
+
+total = Main3.apply(np.sum)
+total['status_name'] = 'Total'
+Main3.append(pd.DataFrame(total.values, index=total.keys()).T, ignore_index=True)

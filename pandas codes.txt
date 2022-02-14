@@ -1,0 +1,27 @@
+
+#How to convert datetime to date:
+
+
+import datetime
+from datetime import datetime
+
+
+rw['modify_date'] = rw['modify_date'].dt.strftime('%m/%d/%Y')
+
+
+
+
+
+#How to filter data by date:
+
+rw = rw.loc[(rw['modify_date'] == '07/06/2021')]
+rw.head()
+                  
+#How to filter data by values:
+
+IWIP= rw.loc[(rw['status_name'] == "Interested-WIP")]
+IWIP
+
+
+
+                      

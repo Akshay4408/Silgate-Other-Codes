@@ -1,0 +1,19 @@
+
+
+
+# Break In APR
+
+apr1['LunchB'] = pd.to_timedelta(apr1['LunchB'])
+apr1['TeaBre'] = pd.to_timedelta(apr1['TeaBre'])
+apr1['Break'] = apr1['LunchB'] + apr1['TeaBre']
+
+apr1['Break'] = apr1['Break'].dt.total_seconds()
+
+
+#operator for time
+
+import operator
+fmt = operator.methodcaller('strftime', '%H:%M:%S')
+apr1['Break'] = pd.to_datetime(apr1['Break'], unit='s').map(fmt)
+
+apr1.head()
