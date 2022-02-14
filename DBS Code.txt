@@ -1,0 +1,205 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[41]:
+
+
+import pandas as pd
+
+
+# In[42]:
+
+
+import numpy as np
+
+
+# In[43]:
+
+
+rev=pd.read_csv(r'E:\experience letter\data science project\retv3.csv')
+
+
+# In[44]:
+
+
+rev.head()
+
+
+# In[45]:
+
+
+rev['Revenue']=rev['Total_Collection']-rev['Total_Sales']
+
+
+# In[46]:
+
+
+rev.head()
+
+
+# In[47]:
+
+
+rev=rev.loc[rev['Revenue'] > 0 ]
+
+
+# In[48]:
+
+
+rev.head()
+
+
+# In[64]:
+
+
+rev1=pd.pivot_table(data=rev, values='Revenue', index=['Region', 'Center'], columns=['Head'], aggfunc=np.sum)
+
+
+# In[66]:
+
+
+rev1
+
+
+# In[67]:
+
+
+rev1.query('Center == ["Goregaon", "Thane"]')
+
+
+# In[69]:
+
+
+#Data Type
+rev.dtypes
+
+
+# In[71]:
+
+
+#Data Shape
+rev.shape
+
+
+# In[72]:
+
+
+# Check Na
+rev.isna()
+
+
+# In[ ]:
+
+
+
+
+
+
+#How to import data from excel sheet 3
+lm=pd.read_excel(r'E:\experience letter\data science project\LMS dataset\Formulas.xlsx', sheet_name=3)
+
+#Drop column
+rw3.drop(['ARPC', 'Revenue_Gen_Footfall'], axis=1)
+
+#Fequency
+LCF = LS.groupby(['loan_condition']).count() 
+print(LCF) 
+
+# Multi-column frequency count 
+count = LS.groupby(['income_category', 'loan_condition']).size() 
+
+
+
+#Pivot table link- https://jakevdp.github.io/PythonDataScienceHandbook/03.09-pivot-tables.html
+
+
+
+# How to convert str to int
+df['DataFrame Column'] = pd.to_numeric(df['DataFrame Column'])
+
+link- https://datatofish.com/string-to-integer-dataframe/
+
+# How to replce special characters from columns
+lm['Name']=lm['Name'].str.replace('/', '')
+lm['Name']=lm['Name'].str.replace('.', '')
+
+# How to ceate todays date column
+
+from datetime import date
+import datetime
+
+lm['Date']= datetime.datetime.today()
+
+# How to create Day, Month, year, Rownum and Source column
+lm['Day'] = lm['Date'].dt.day
+lm['Month'] = lm['Date'].dt.month
+lm['Year'] = lm['Date'].dt.year
+lm["Rownum"] = lm.index + 1
+lm['Source']='INM'
+
+# How to add String and Numeric Column
+lm['LeadID'] = lm['Source'] + lm['Day'].map(str)  + lm['Month'].map(str) + lm['Year'].map(str) + lm['Rownum'].map(str) # How to add String and Numeric Column
+lm['LeadID'] = lm['Source'] + lm['Day'].map(str)  + lm['Month'].map(str) + lm['Year'].map(str) + lm['Rownum'].map(str) 
+
+#ValueError: Can't handle mix of binary and continuous target
+print(accuracy_score(y, prediction5.round()))
+
+
+
+#How to export dataset in csv format   1) export_dataframe is name of file to be created 
+lm.to_csv (r'C:\Users\Aniket\Desktop\ajinkya\export_dataframe.csv', index = False, header=True)
+
+#How to export in excel format
+lm.to_excel (r'C:\Users\Aniket\Desktop\ajinkya\elms.xlsx', index = False, header=True)
+
+
+#TypeError: '>=' not supported between instances of 'str' and 'float'
+
+rw=rw.fillna(' ')
+le = LabelEncoder()
+rw['Issue'] = le.fit_transform(rw['Issue'].astype(str))
+
+
+
+# Drop duplicate rows from dataset on basis of column
+
+rw=rw.drop_duplicates(['LeadID'])
+
+# How to create new column on basis of two or more column
+def label_race (x):
+    
+    if x['LeadStatus'] == 'Success' :
+        
+        return 'Success'
+    
+    if x['LeadStatus'] == 'WIP' :
+        
+        return 'WIP'
+    if x['LeadStatus'] == 'New' and  x['Numberofattempts'] == 1:
+        
+        return 'WIP'
+        return 'WIP'
+    if x['LeadStatus'] == 'New' and  x['Numberofattempts'] == 0:
+        
+        return 'Unattempted'
+    
+rw['Final Status'] = rw.apply (lambda x: label_race(x), axis=1)
+
+# How to create new column on basis of date column
+
+def label_race1 (x):
+    
+    if x['Event'] == 'Call' :
+        
+        return 'Call'
+   
+    if x['PlannedEvent'] > datetime.datetime.strptime('2020-01-01', '%Y-%m-%d') and  x['PlannedEvent'] <= datetime.datetime.strptime('2020-04-11', '%Y-%m-%d'):
+        
+        return 'Meeting'
+        
+    if x['PlannedEvent'] >= datetime.datetime.strptime('2020-04-12', '%Y-%m-%d') and  x['PlannedEvent'] < datetime.datetime.strptime('2020-05-15', '%Y-%m-%d'):
+        
+        return 'Up-comimng Meeting'
+
+rw['Meeting Flag'] = rw.apply (lambda x: label_race1(x), axis=1)
+    
